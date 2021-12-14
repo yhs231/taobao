@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ncu.yhs.mapper.CartMapper">
+
+    <select id="queryAllCart" resultType="cart">
+        select * from taobao.cart;
+    </select>
+
+
+    <insert id="addCart" parameterType="cart">
+        insert into taobao.cart (goodName,price,image,storeName)
+        values (#{goodName},#{price},#{image},#{storeName});
+    </insert>
+
+    <delete id="deleteCartById" parameterType="int">
+        delete
+        from taobao.cart
+        where cartId=#{cartId};
+    </delete>
+
+    <delete id="deleteCart" parameterType="int">
+        delete
+        from taobao.cart
+    </delete>
+
+
+
+</mapper>

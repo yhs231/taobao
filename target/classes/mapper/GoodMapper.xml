@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ncu.yhs.mapper.GoodMapper">
+
+    <select id="queryAllGood" resultType="good">
+        select * from taobao.good;
+    </select>
+
+    <select id="queryGoodByName" resultType="good">
+        select * from taobao.good
+        where goodName=#{goodName};
+    </select>
+
+    <select id="queryGoodById" resultType="good">
+        select * from taobao.good
+        where goodId=#{goodId};
+    </select>
+
+
+    <insert id="addGood" parameterType="good">
+        insert into taobao.good (goodName,price,image,details,storeName,sales,cid)
+        values (#{goodName},#{price},#{image},#{details},#{storeName},#{sales},#{cid});
+    </insert>
+
+    <delete id="deleteGoodByGoodId" parameterType="int">
+        delete
+        from taobao.good
+        where goodId=#{goodId};
+    </delete>
+
+    <update id="updateGood" parameterType="good" >
+        update taobao.good
+        set cid=#{cid}
+        where goodId=#{goodId};
+    </update>
+
+
+</mapper>

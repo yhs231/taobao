@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ncu.yhs.mapper.UserMapper">
+
+    <select id="queryAllUser" resultType="user">
+        select * from taobao.user;
+    </select>
+
+    <select id="queryUserByNameAndPassword" resultType="user">
+        select * from taobao.user where name=#{name} and password=#{password};
+    </select>
+
+
+    <select id="queryUserByName" resultType="user">
+        select * from taobao.user where name=#{name} ;
+    </select>
+
+    <insert id="addUser"  parameterType="user">
+        insert
+        into taobao.user(name, password, price, cartName, seller)
+        values(#{name},#{password},#{price},#{cartName},#{seller})
+    </insert>
+
+
+    <update id="BecomeShopper" parameterType="user" >
+        update taobao.user
+        set seller=#{seller}
+        where id=#{id};
+    </update>
+
+    <update id="updatePrice" parameterType="user" >
+        update taobao.user
+        set price=#{price}
+        where id=#{id};
+    </update>
+
+
+
+    <select id="queryGoods" resultMap="goods">
+        SELECT u.id uid, u.`cartName` uname,u.price uprice,
+               g.`goodId` gid,g.`goodName` gname,g.`price`  gprice,g.storeName gstoreName,
+               g.details gdetails,g.sales gsales
+        FROM taobao. user  u ,taobao.good g
+        WHERE  u.id=g.cid and u.id=#{uid};
+    </select>
+
+    <resultMap id="goods" type="User">
+       <result property="id" column="uid"/>
+        <result property="cartName" column="uname"/>
+        <result property="price" column="uprice"/>
+        <collection property="goods" ofType="Good">
+           <result property="goodId" column="gid"/>
+            <result property="goodName" column="gname"/>
+            <result property="price" column="gprice"/>
+            <result property="storeName" column="gstoreName"/>
+            <result property="details" column="gdetails"/>
+            <result property="sales" column="gsales"/>
+        </collection>
+    </resultMap>
+
+
+
+</mapper>

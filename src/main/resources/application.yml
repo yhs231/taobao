@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    username: "root"
+    password: "root"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/taobao?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+  security:
+    user:
+      name: user
+      password: 111111
+
+
+#??mybatis
+mybatis:
+  type-aliases-package: cn.edu.ncu.yhs.pojo
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+
+#请求头，加密的秘钥，超限时间（60*60*24），荷载中拿到开头
+jwt:
+  tokenHeader: Authorization
+  secret: yeb-secret
+  expiration: 604800
+  tokenHead: Bearer

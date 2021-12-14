@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ncu.yhs.mapper.UserMapper">
+
+    <select id="queryAllUser" resultType="user">
+        select * from taobao.user;
+    </select>
+
+    <select id="queryUserByNameAndPassword" resultType="User">
+        select * from taobao.user
+        where name=#{name} and password=#{password};
+    </select>
+
+
+    <insert id="addUser" parameterType="User">
+        insert into taobao.user (id,name,password)
+        values (#{id},#{name},#{password});
+    </insert>
+
+
+
+</mapper>

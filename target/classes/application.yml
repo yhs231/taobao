@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    username: "root"
+    password: "root"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/taobao?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    #    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+  security:
+    user:
+      name: user
+      password: 111111
+
+
+#??mybatis
+mybatis:
+  type-aliases-package: cn.edu.ncu.yhs.pojo
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+
+
+thymeleaf:
+  cache: false
